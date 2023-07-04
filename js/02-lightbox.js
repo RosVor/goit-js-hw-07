@@ -1,11 +1,8 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
-// Create and render gallery markup based on the galleryItems array
 const gallery = document.querySelector('.gallery');
 
+// Create gallery items
 const galleryMarkup = galleryItems
   .map(
     ({ original, preview, description }) => `
@@ -18,19 +15,11 @@ const galleryMarkup = galleryItems
   )
   .join('');
 
+// Render gallery
 gallery.innerHTML = galleryMarkup;
 
 // Initialize SimpleLightbox
-const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery__link', {
   captions: true,
   captionDelay: 250,
-  captionPosition: 'bottom',
-  captionClass: 'caption',
-  closeText: '&times;',
-  showCounter: false,
-  overlay: true,
-  docClose: false,
-  nav: true,
-  navText: ['&lsaquo;', '&rsaquo;'],
-  history: false,
 });
