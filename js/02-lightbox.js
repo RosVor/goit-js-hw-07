@@ -13,10 +13,9 @@ const galleryMarkup = galleryItems
   `)
   .join('');
 
-// Render gallery
+
 gallery.innerHTML = galleryMarkup;
 
-// Initialize SimpleLightbox
 const lightbox = new SimpleLightbox('.gallery__link', {
   captions: true,
   captionDelay: 250,
