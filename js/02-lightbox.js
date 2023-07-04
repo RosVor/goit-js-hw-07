@@ -1,6 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-
 const gallery = document.querySelector('.gallery');
 
 // Create gallery items
@@ -17,9 +16,7 @@ const galleryMarkup = galleryItems
 
 gallery.innerHTML = galleryMarkup;
 
-const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery__link', {
   captions: true,
   captionDelay: 250,
-  captionSelector: 'a',
-  captionType: 'data-description',
 });
