@@ -60,4 +60,4 @@ function createGalleryItem(item) {
     </li>
   `;
 }
-console.log(galleryItems);
+
