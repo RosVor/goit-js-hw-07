@@ -10,27 +10,46 @@ function createGallery() {
   
     galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
   
-    const gallery = new SimpleLightbox('.gallery a', {
-      captions: true,
-      captionDelay: 250,
-      captionsData: 'alt',
-      showCounter: false,
-      showNav: true,
-      navText: ['&lsaquo;', '&rsaquo;'],
-      closeText: '&times;',
-      docClose: true,
-      swipeClose: true,
-      closeTimeout: 0,
-    });
+    const galleryLinks = document.querySelectorAll('.gallery__link');
+    galleryLinks.forEach(link => link.addEventListener('click', openLightbox));
+  }
   
-    gallery.on('show.simplelightbox', () => {
-      const closeButton = document.querySelector('.sl-close');
-      closeButton.style.top = '10px';
-      closeButton.style.right = '10px';
+  function openLightbox(event) {
+    event.preventDefault();
   
-      const navButtons = document.querySelectorAll('.sl-navigation button');
-      navButtons.forEach(button => (button.style.display = 'block'));
-    });
+    const clickedLink = event.target.closest('.gallery__link');
+    const originalUrl = clickedLink.href;
+    const originalAlt = clickedLink.querySelector('.gallery__image').alt;
+  
+    const lightboxHtml = `
+      <div class="lightbox">
+        <div class="lightbox__overlay"></div>
+        <div class="lightbox__content">
+          <img src="${originalUrl}" alt="${originalAlt}" class="lightbox__image">
+        </div>
+      </div>
+    `;
+  
+    document.body.insertAdjacentHTML('beforeend', lightboxHtml);
+  
+    const lightbox = document.querySelector('.lightbox');
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', handleKeydown);
+  }
+  
+  function closeLightbox(event) {
+    if (event.target !== event.currentTarget) return;
+  
+    const lightbox = document.querySelector('.lightbox');
+    lightbox.remove();
+  
+    document.removeEventListener('keydown', handleKeydown);
+  }
+  
+  function handleKeydown(event) {
+    if (event.key === 'Escape') {
+      closeLightbox(event);
+    }
   }
 function createGalleryItem(item) {
   return `
