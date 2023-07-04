@@ -39,9 +39,6 @@ galleryList.addEventListener('click', (event) => {
   }
 });
 
-const galleryMarkup = galleryItems.map(createGalleryItem).join('');
-galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
-
 const galleryImages = document.querySelectorAll('.gallery__image');
 galleryImages.forEach((image) => {
   image.addEventListener('click', (event) => {
@@ -49,4 +46,5 @@ galleryImages.forEach((image) => {
   });
 });
 
-
+const galleryMarkup = galleryItems.map(createGalleryItem).join('');
+galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
