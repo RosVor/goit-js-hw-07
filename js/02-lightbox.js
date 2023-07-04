@@ -19,4 +19,6 @@ gallery.innerHTML = galleryMarkup;
 const lightbox = new SimpleLightbox('.gallery__link', {
   captions: true,
   captionDelay: 250,
+  captionSelector: 'a',
+  captionType: 'data-description',
 });
