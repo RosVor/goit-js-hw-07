@@ -20,4 +20,6 @@ gallery.innerHTML = galleryMarkup;
 const lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
   captionDelay: 250,
+  captionSelector: 'a',
+  captionType: 'data-description',
 });
